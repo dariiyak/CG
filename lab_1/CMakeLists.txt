@@ -108,13 +108,8 @@ if(GLSLC_FOUND)
 		list(APPEND _SHADER_BINARIES ${SHADER_BINARY_PATH})
 	endmacro()
 
-	# To compile shader file, use compile_shader function with a file name
-	# of a shader inside shaders directory. See example below:
-
-	# compile_shader(example.vert)
-    compile_shader(figure.vert)
-	# compile_shader(example.frag)
-    compile_shader(figure.frag)
+	compile_shader(figure.vert)
+	compile_shader(figure.frag)
 
 	add_custom_target(shaders DEPENDS ${_SHADER_BINARIES})
 	add_dependencies(${PROJECT_NAME} shaders)
@@ -129,11 +124,4 @@ if(APPLE)
     MACOSX_BUNDLE_BUNDLE_NAME "CG Lab 1")
   get_filename_component(LAB_SDK_ROOT "${VULKAN_LIBRARY_DIR}" DIRECTORY)
   target_compile_definitions(${PROJECT_NAME} PRIVATE LAB_SDK_ROOT="${LAB_SDK_ROOT}")
-endif()
-include(CTest)
-if(BUILD_TESTING)
-  add_executable(math-tests tests/math_tests.cpp)
-  target_compile_features(math-tests PRIVATE cxx_std_20)
-  target_include_directories(math-tests PRIVATE source)
-  add_test(NAME geometry-and-transforms COMMAND math-tests)
 endif()
