@@ -1,0 +1,8 @@
+build*/
+.local/
+.DS_Store
+imgui.ini
+__pycache__/
+screenshots/*.ppm
+*.zip
+!315БВ_Яковлева_Лаб1.zip
